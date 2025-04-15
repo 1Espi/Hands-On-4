@@ -46,23 +46,25 @@ function tres() {
 }
 
 function cuatro() {
-    echo -e "\n Ingrese las columnas que desea extraer (ejemplo: 1,2,3)"
+    echo -e "\nIngrese las columnas que desea extraer (ejemplo: 1,2,3)"
     read -p "Columnas: " columns
-    
+
     ps aux | awk -v cols="$columns" '
     BEGIN {
-        split(cols, colArray, ",")
+        n = split(cols, colArray, ",")
     }
     {
         output = ""
-        for (i in colArray) {
+        for (i = 1; i <= n; i++) {
             output = output $colArray[i] "\t"
         }
         print output
     }'
-    echo "Procesos extraidos con exito"
+    
+    echo "Procesos extraídos con éxito"
     read -p ""
 }
+
 
 function cinco() {
     echo -e "\n Ingrese el nombre del archivo"
